@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import { DemandeStatus, AppelStatus } from '@prisma/client'
 
+export const dynamic = 'force-dynamic'
+
 const statusLabel: Record<string, string> = {
   NOUVEAU: 'Nouveau', EN_COURS: 'En cours', REPONDU: 'Répondu', ARCHIVE: 'Archivé',
   CONFIRME: 'Confirmé', EN_ATTENTE: 'En attente', TERMINE: 'Terminé', ANNULE: 'Annulé',

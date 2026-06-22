@@ -30,22 +30,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # ── Prisma Migrate (s'exécute une fois puis quitte) ──────────
-  byarms-migrate:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: builder
-    container_name: byarms-migrate
-    restart: "no"
-    command: npx prisma migrate deploy
-    environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-byarms}:${POSTGRES_PASSWORD:-byarms2026}@byarms-postgres:5432/${POSTGRES_DB:-byarms}?schema=public
-    depends_on:
-      byarms-postgres:
-        condition: service_healthy
-
-  # ── Next.js App ──────────────────────────────────────────────
+  # ── Next.js App (migrations appliquées au démarrage via CMD) ─
   byarms-web:
     build:
       context: .
@@ -55,8 +40,6 @@ services:
     depends_on:
       byarms-postgres:
         condition: service_healthy
-      byarms-migrate:
-        condition: service_completed_successfully
     environment:
       NODE_ENV: production
       PORT: 3000
@@ -68,7 +51,7 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 20s
+      start_period: 30s
 
 volumes:
   byarms-db:
