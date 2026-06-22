@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum DemandeStatus {
+  NOUVEAU
+  EN_COURS
+  REPONDU
+  ARCHIVE
+}
+
+enum AppelStatus {
+  CONFIRME
+  EN_ATTENTE
+  TERMINE
+  ANNULE
+}
+
+model Demande {
+  id        Int           @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String        @default("")
+  sujet     String
+  message   String        @db.Text
+  budget    String        @default("")
+  status    DemandeStatus @default(NOUVEAU)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model Appel {
+  id        Int         @id @default(autoincrement())
+  name      String
+  email     String
+  type      String
+  date      DateTime
+  heure     String
+  lien      String      @default("")
+  notes     String      @default("") @db.Text
+  status    AppelStatus @default(EN_ATTENTE)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
