@@ -1,0 +1,7 @@
+node_modules
+.next
+.git
+.env*
+*.md
+prisma/migrations
+prisma/seed.ts
