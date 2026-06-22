@@ -1,0 +1,74 @@
+# ═══════════════════════════════════════════════════════════════
+#  byarms-web — docker-compose production
+#  Ports : 3000 (web) · 5433 (postgres, local uniquement)
+#
+#  Usage :
+#    cp .env.example .env
+#    docker compose up -d
+#    docker compose logs -f
+#    docker compose down
+# ═══════════════════════════════════════════════════════════════
+
+services:
+
+  # ── PostgreSQL ───────────────────────────────────────────────
+  byarms-postgres:
+    image: postgres:16-alpine
+    container_name: byarms-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-byarms}
+      POSTGRES_USER: ${POSTGRES_USER:-byarms}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-byarms2026}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - byarms-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-byarms} -d ${POSTGRES_DB:-byarms}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Prisma Migrate (s'exécute une fois puis quitte) ──────────
+  byarms-migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    container_name: byarms-migrate
+    restart: "no"
+    command: npx prisma migrate deploy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-byarms}:${POSTGRES_PASSWORD:-byarms2026}@byarms-postgres:5432/${POSTGRES_DB:-byarms}?schema=public
+    depends_on:
+      byarms-postgres:
+        condition: service_healthy
+
+  # ── Next.js App ──────────────────────────────────────────────
+  byarms-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: byarms-web
+    restart: unless-stopped
+    depends_on:
+      byarms-postgres:
+        condition: service_healthy
+      byarms-migrate:
+        condition: service_completed_successfully
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-byarms}:${POSTGRES_PASSWORD:-byarms2026}@byarms-postgres:5432/${POSTGRES_DB:-byarms}?schema=public
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  byarms-db:

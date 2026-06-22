@@ -1,0 +1,23 @@
+# ═══════════════════════════════════════════════════════════════
+#  byarms-web — surcharge développement
+#  Usage : docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+# ═══════════════════════════════════════════════════════════════
+
+services:
+
+  byarms-postgres:
+    ports:
+      - "5432:5432"       # exposé sans restriction en dev
+
+  byarms-web:
+    build:
+      target: builder     # image avec node_modules complets pour hot reload
+    command: npm run dev
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/app:delegated
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
