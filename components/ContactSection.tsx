@@ -1,5 +1,6 @@
 'use client'
 import { useRef, useState } from 'react'
+import Script from 'next/script'
 
 declare global {
   interface Window {
@@ -60,7 +61,7 @@ export function ContactSection() {
   return (
     <>
       <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-      <script src="https://assets.calendly.com/assets/external/widget.js" async />
+      <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
 
       <section className="section contact-section" id="contact" aria-labelledby="contact-title">
         <div className="section-inner">
