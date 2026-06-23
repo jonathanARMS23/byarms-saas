@@ -3,5 +3,4 @@ node_modules
 .git
 .env*
 *.md
-prisma/migrations
 prisma/seed.ts
