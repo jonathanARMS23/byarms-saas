@@ -14,6 +14,14 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'ByARMS — L\'agence de développement IA pour startups ambitieuses',
   description: 'ByARMS livre vos applications web et mobile 3× plus vite grâce à ADA, un système d\'agents IA spécialisés. Prototype en 48h · MVP en 4 semaines.',
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: { url: '/apple-touch-icon.png' },
+    other: [{ rel: 'manifest', url: '/site.webmanifest' }],
+  },
   openGraph: {
     title: 'ByARMS — Votre équipe dev, dopée à l\'IA',
     description: 'Applications web, mobile et IA livrées 3× plus vite grâce à ADA, notre système multi-agents.',
