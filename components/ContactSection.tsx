@@ -11,14 +11,42 @@ export function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null)
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setSubmitting(true)
-    await new Promise((r) => setTimeout(r, 900))
-    setSubmitting(false)
-    setSuccess(true)
-    formRef.current?.reset()
+    setError('')
+
+    const fd = new FormData(e.currentTarget)
+    const body = {
+      prenom:  fd.get('prenom'),
+      nom:     fd.get('nom'),
+      email:   fd.get('email'),
+      company: fd.get('company'),
+      service: fd.get('service'),
+      message: fd.get('message'),
+    }
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        setError(data.error ?? 'Une erreur est survenue, veuillez réessayer.')
+      } else {
+        setSuccess(true)
+        formRef.current?.reset()
+      }
+    } catch {
+      setError('Impossible de contacter le serveur. Vérifiez votre connexion.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const openCalendly = () => {
@@ -96,40 +124,45 @@ export function ContactSection() {
                 <div className="f-row">
                   <div className="f-group">
                     <label className="f-label" htmlFor="f-first">Prénom</label>
-                    <input className="f-input" id="f-first" type="text" placeholder="Sophie" autoComplete="given-name" required />
+                    <input className="f-input" id="f-first" name="prenom" type="text" placeholder="Sophie" autoComplete="given-name" required />
                   </div>
                   <div className="f-group">
                     <label className="f-label" htmlFor="f-last">Nom</label>
-                    <input className="f-input" id="f-last" type="text" placeholder="Marchand" autoComplete="family-name" required />
+                    <input className="f-input" id="f-last" name="nom" type="text" placeholder="Marchand" autoComplete="family-name" required />
                   </div>
                 </div>
                 <div className="f-group">
                   <label className="f-label" htmlFor="f-email">Email professionnel</label>
-                  <input className="f-input" id="f-email" type="email" placeholder="sophie@startup.com" autoComplete="email" required />
+                  <input className="f-input" id="f-email" name="email" type="email" placeholder="sophie@startup.com" autoComplete="email" required />
                 </div>
                 <div className="f-group">
                   <label className="f-label" htmlFor="f-company">Startup / Entreprise</label>
-                  <input className="f-input" id="f-company" type="text" placeholder="Kara SaaS" autoComplete="organization" />
+                  <input className="f-input" id="f-company" name="company" type="text" placeholder="Kara SaaS" autoComplete="organization" />
                 </div>
                 <div className="f-group">
                   <label className="f-label" htmlFor="f-service">Je suis intéressé(e) par</label>
-                  <select className="f-select" id="f-service">
+                  <select className="f-select" id="f-service" name="service">
                     <option value="">Sélectionner…</option>
-                    <option value="prototype">Prototype &amp; Spécification (490 € remboursables)</option>
-                    <option value="web">Application Web SaaS</option>
-                    <option value="mobile">Application Mobile</option>
-                    <option value="ai">Intégration IA / LLM</option>
-                    <option value="mvp">MVP Express — 4 semaines</option>
-                    <option value="audit">Audit &amp; conseil technique</option>
+                    <option value="Prototype & Spécification">Prototype &amp; Spécification (490 € remboursables)</option>
+                    <option value="Application Web SaaS">Application Web SaaS</option>
+                    <option value="Application Mobile">Application Mobile</option>
+                    <option value="Intégration IA / LLM">Intégration IA / LLM</option>
+                    <option value="MVP Express — 4 semaines">MVP Express — 4 semaines</option>
+                    <option value="Audit & conseil technique">Audit &amp; conseil technique</option>
                   </select>
                 </div>
                 <div className="f-group">
                   <label className="f-label" htmlFor="f-brief">Décrivez votre projet</label>
-                  <textarea className="f-textarea" id="f-brief" placeholder="Expliquez votre idée, votre cible, vos contraintes et votre budget estimé…" required />
+                  <textarea className="f-textarea" id="f-brief" name="message" placeholder="Expliquez votre idée, votre cible, vos contraintes et votre budget estimé…" required />
                 </div>
                 <button type="submit" className="f-submit" disabled={submitting}>
                   {submitting ? 'Envoi en cours…' : 'Envoyer ma demande →'}
                 </button>
+                {error && (
+                  <div className="f-success show" role="alert" style={{ background: 'rgba(239,68,68,0.08)', borderColor: 'rgba(239,68,68,0.3)', color: '#f87171' }}>
+                    {error}
+                  </div>
+                )}
                 {success && (
                   <div className="f-success show" role="alert">
                     Message envoyé — nous revenons vers vous sous 24h.

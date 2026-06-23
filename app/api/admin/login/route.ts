@@ -16,10 +16,15 @@ export async function POST(req: NextRequest) {
 
   const token = await signToken({ email, role: 'admin' })
 
+  // Secure flag basé sur le protocole réel (x-forwarded-proto si derrière un proxy)
+  // NODE_ENV=production + HTTP (ex: Coolify sans SSL) → secure:true bloquerait le cookie
+  const proto = req.headers.get('x-forwarded-proto') ?? req.nextUrl.protocol.replace(':', '')
+  const isHttps = proto === 'https'
+
   const res = NextResponse.json({ ok: true })
   res.cookies.set(COOKIE_NAME, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: isHttps,
     sameSite: 'lax',
     maxAge: 60 * 60 * 8,
     path: '/',
