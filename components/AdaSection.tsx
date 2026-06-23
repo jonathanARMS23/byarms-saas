@@ -37,7 +37,7 @@ export function AdaSection() {
               {TAGS.map((t) => <span className="tag" key={t}>{t}</span>)}
             </div>
             <div className="r" style={{ marginTop: 32 }}>
-              <a href="https://ada.byarms.dev" target="_blank" rel="noopener noreferrer" className="btn-fill" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <a href="https://ada.byarms.com" target="_blank" rel="noopener noreferrer" className="btn-fill" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                 Documentation ADA complète
                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M1 6.5h11M6.5 1l5.5 5.5L6.5 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </a>
