@@ -1,0 +1,56 @@
+/* Legacy identity and a new multi-engine interpretation of its agent constellation. */
+.m-legacy-logo{position:relative;display:block;width:58px;height:58px;overflow:hidden;flex-shrink:0;border-radius:12px}
+.m-legacy-logo img{object-fit:cover;transform:scale(1.7);transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.m-brand:hover .m-legacy-logo img{transform:scale(1.82) rotate(8deg)}
+.m-header{position:relative;z-index:20}
+.m-hero{position:relative;isolation:isolate;grid-template-columns:1.05fr 1fr;gap:5%;padding-top:78px;padding-bottom:78px}
+.m-hero-copy{position:relative;z-index:2}
+.m-hero::before{content:'';position:absolute;inset:-15% -5%;background:radial-gradient(ellipse at 75% 46%,#497bfa14,transparent 48%),radial-gradient(ellipse at 30% 75%,#9a6dee0a,transparent 45%);transform:translateY(var(--glow-y,0px));pointer-events:none;z-index:-1}
+.m-hero-visual{min-width:0;transform:translateY(var(--hero-y,0px));padding:5px 10px}
+.m-orbit{inset:-70px;transform:translateY(var(--glow-y,0px));opacity:.8}
+.m-os{position:relative;width:100%;margin:0;isolation:isolate}
+.m-os-depth{position:relative;width:100%;aspect-ratio:1;transform:translate(var(--pointer-x,0px),var(--pointer-y,0px));transition:transform .55s ease-out}
+.m-os-halo{position:absolute;inset:15%;border-radius:50%;background:radial-gradient(circle,#c8d8ff66,transparent 65%);filter:blur(8px);animation:os-breathe 7s ease-in-out infinite}
+.m-os-ring{position:absolute;border:1px solid #8ba7df22;border-radius:50%;pointer-events:none}
+.m-os-ring-one{inset:13%;animation:os-spin 55s linear infinite;border-style:dashed}
+.m-os-ring-two{inset:28%;border-color:#8ba7df33}
+.m-os-ring-one::after{content:'';position:absolute;top:14%;left:14%;width:6px;height:6px;border-radius:50%;background:#85a7ef;box-shadow:0 0 15px #7097f1}
+.m-os-branches{position:absolute;inset:0;width:100%;height:100%;overflow:visible;fill:none;stroke-width:.18}
+.m-os-track{stroke:#adc0e3;opacity:.5}
+.m-os-flow{stroke:#668fe9;stroke-dasharray:2 5;animation:os-stream 2.4s linear infinite;animation-delay:var(--branch-delay);opacity:.9}
+.m-os-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:190px;min-height:174px;padding:21px 13px 16px;border-radius:22px;background:linear-gradient(145deg,#24324b,#101a2b);box-shadow:0 16px 45px #27467b2b,0 0 0 7px #ffffff90,0 0 0 8px #d2ddf080;display:flex;align-items:center;flex-direction:column;text-align:center;color:white;z-index:2}
+.m-os-kicker{font-size:11px;letter-spacing:3px;color:#99b7ff;margin-bottom:9px}
+.m-os-center>strong{font-weight:500;font-size:21px;line-height:1.15;letter-spacing:-.5px}
+.m-os-multi{font-size:7px;letter-spacing:2px;color:#9aabc4;margin:13px 0 9px}
+.m-os-engines{display:flex;gap:7px;width:100%;justify-content:center}
+.m-os-engines>span{display:flex;align-items:center;gap:4px;padding:5px 6px;border:1px solid #53617a75;border-radius:5px;background:#ffffff06;font-size:9px;white-space:nowrap}
+.m-os-engines i{font-style:normal;color:#d8a488;font-size:13px}.m-os-engines>span:last-child i{color:#a9d7c3}
+.m-os-node-position{position:absolute;transform:translate(-50%,-50%);z-index:3}
+.m-os-node{width:77px;height:83px;background:#ffffffed;border:1px solid #dde4f0;border-radius:15px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 6px 22px #28457709;animation:os-float 4.8s ease-in-out infinite;animation-delay:var(--agent-delay);transition:border-color .25s,box-shadow .25s}
+.m-os-node:hover{border-color:var(--agent-color);box-shadow:0 8px 25px #28457720}
+.m-os-node svg{color:var(--agent-color);margin-bottom:2px}.m-os-node strong{font-size:10px;font-weight:600;color:#39455b}.m-os-node small{font-size:8px;color:#8a95a7}
+.m-os figcaption{display:flex;align-items:center;justify-content:center;gap:8px;font-size:10px;color:#71809a;margin-top:23px}
+.m-visual-caption{margin-top:19px;gap:10px;font-size:7px}
+.m-hero-copy h1 em{background:linear-gradient(100deg,#2857e8 15%,#617be2 40%,#825bc3 60%,#2857e8 85%);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:os-shimmer 10s ease-in-out infinite}
+.m-button svg,.m-text-link svg{transition:transform .25s ease}.m-button:hover svg,.m-text-link:hover svg{transform:translate(3px,-3px)}
+.m-offer .m-mini-window{transition:transform .7s cubic-bezier(.22,1,.36,1)}.m-offer:hover .m-mini-window{transform:translateY(8px) rotate(1deg)}
+.m-workflow-art b{animation:os-breathe 5s ease-in-out infinite}
+.m-founder{position:relative;overflow:hidden;grid-template-columns:1.1fr 1fr;align-items:center;padding:55px;gap:65px}
+.m-founder-signature{position:relative;display:block;width:100%;max-width:350px;justify-self:end}
+.m-ceo-portrait{position:relative;width:100%;aspect-ratio:4/4.6;overflow:hidden;border-radius:12px;background:#192d31}
+.m-ceo-portrait img{object-fit:cover;object-position:50% 45%;transform:translateY(var(--portrait-y,0px)) scale(1.13);transition:transform .35s ease-out}
+.m-ceo-caption{position:relative;margin:-44px 16px 0;padding:20px 23px;background:#ffffffef;backdrop-filter:blur(12px);border:1px solid #e4e7e0;border-radius:8px;box-shadow:0 10px 25px #12203a0a}
+.m-ceo-caption strong{font-size:18px}.m-ceo-caption p{font-size:12px!important}.m-founder-signature .m-ceo-caption small{font-size:11px;margin-top:10px;line-height:1.6}
+.m-motion-toggle{position:fixed;z-index:40;right:18px;bottom:18px;display:flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid #dce2e9;border-radius:50px;background:#ffffffea;backdrop-filter:blur(10px);color:#637189;font-size:10px!important;box-shadow:0 3px 15px #14213a08;cursor:pointer}
+@keyframes os-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes os-stream{from{stroke-dashoffset:21}to{stroke-dashoffset:0}}
+@keyframes os-spin{to{transform:rotate(360deg)}}
+@keyframes os-breathe{0%,100%{opacity:.8;scale:1}50%{opacity:1;scale:1.04}}
+@keyframes os-shimmer{0%,100%{background-position:0% center}50%{background-position:100% center}}
+.marketing[data-motion=off] *,.marketing[data-motion=off] *::before,.marketing[data-motion=off] *::after{animation:none!important;transition:none!important}
+.marketing[data-motion=off] .m-os-depth,.marketing[data-motion=off] .m-hero-visual,.marketing[data-motion=off] .m-orbit{transform:none}
+@media(max-width:1100px) and (min-width:851px){.m-os-center{width:158px;min-height:155px;padding:15px 8px}.m-os-center>strong{font-size:18px}.m-os-engines>span{font-size:8px;padding:4px}.m-os-node{width:64px;height:71px}.m-os-node strong{font-size:9px}.m-os-node small{font-size:7px}}
+@media(max-width:850px){.m-hero{grid-template-columns:1fr;gap:35px}.m-hero-copy{max-width:600px}.m-hero-visual{width:min(100%,540px);justify-self:center;padding:20px}.m-os-center{width:190px}.m-founder{gap:35px;padding:35px}.m-founder-signature{max-width:330px;justify-self:center}}
+@media(max-width:680px){.m-legacy-logo{width:46px;height:46px}.m-hero{padding-top:45px;gap:26px}.m-hero-visual{padding:10px 9px}.m-os-center{width:146px;min-height:146px;border-radius:17px;padding:15px 7px 12px}.m-os-center>strong{font-size:17px}.m-os-kicker{font-size:9px;margin-bottom:7px}.m-os-multi{font-size:6px;margin:10px 0 7px}.m-os-engines{gap:4px}.m-os-engines>span{font-size:7px;gap:3px;padding:4px}.m-os-engines i{font-size:10px}.m-os-node{width:60px;height:66px;border-radius:11px;gap:3px}.m-os-node svg{width:17px;height:17px}.m-os-node strong{font-size:8px}.m-os-node small{font-size:7px}.m-os figcaption{font-size:9px;margin-top:25px}.m-visual-caption{font-size:6px}.m-founder{padding:29px;gap:30px}.m-motion-toggle span{display:none}.m-motion-toggle{padding:10px;bottom:12px;right:12px}}
+@media(max-width:360px){.m-os-center{width:128px;min-height:130px}.m-os-center>strong{font-size:15px}.m-os-engines>span{font-size:6px}.m-os-node{width:53px;height:61px}.m-os-node small{font-size:6px}}
+@media(prefers-reduced-motion:reduce){.marketing *,.marketing *::before,.marketing *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.m-motion-toggle{display:none}.m-os-depth,.m-hero-visual,.m-orbit{transform:none!important}}

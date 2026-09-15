@@ -48,3 +48,36 @@ model Appel {
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
 }
+
+model Onboarding {
+  id          String   @id @default(cuid())
+  company     String
+  email       String
+  offer       String
+  title       String
+  answers     Json     @default("{}")
+  gates       Json     @default("{}")
+  revision    Int      @default(0)
+  submittedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tokens      OnboardingAccess[]
+}
+
+model OnboardingAccess {
+  id           String @id @default(cuid())
+  tokenHash    String @unique
+  onboardingId String
+  kind         String
+  expiresAt    DateTime
+  usedAt       DateTime?
+  revokedAt    DateTime?
+  onboarding   Onboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+  @@index([onboardingId])
+}
+
+model AdminCredential {
+  email String @id
+  passwordHash String
+  updatedAt DateTime @default(now()) @updatedAt
+}

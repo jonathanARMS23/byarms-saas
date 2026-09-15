@@ -16,6 +16,7 @@ export function AdminSidebar({ demandesBadge, appelsBadge }: Props) {
   const NAV = [
     { href: '/admin',          icon: '⬛', label: "Vue d'ensemble", badge: 0 },
     { href: '/admin/demandes', icon: '📨', label: 'Demandes',       badge: demandesBadge },
+    { href: '/admin/onboarding', icon: '📋', label: 'Onboarding', badge: 0 },
     { href: '/admin/appels',   icon: '📞', label: 'Appels',         badge: appelsBadge },
   ]
 

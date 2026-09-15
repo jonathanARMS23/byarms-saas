@@ -1,26 +1,9 @@
-'use client'
-import { Nav } from '@/components/Nav'
-import { Hero } from '@/components/Hero'
-import { StatsBar } from '@/components/StatsBar'
-import { AdaSection } from '@/components/AdaSection'
-import { ServicesSection } from '@/components/ServicesSection'
-import { FounderSection } from '@/components/FounderSection'
-import { ContactSection } from '@/components/ContactSection'
-import { Footer } from '@/components/Footer'
-import { useReveal } from '@/hooks/useReveal'
+import Link from 'next/link'
+import Image from 'next/image'
+import { EngineeringOS } from '@/components/EngineeringOS'
+import { ArrowUpRight } from 'lucide-react'
+import { Shell, CTA, Offers, Method, BottomCTA } from '@/components/Marketing'
 
 export default function Home() {
-  useReveal()
-  return (
-    <>
-      <Nav />
-      <Hero />
-      <StatsBar />
-      <AdaSection />
-      <ServicesSection />
-      <FounderSection />
-      <ContactSection />
-      <Footer />
-    </>
-  )
+  return <Shell><section className="m-hero"><div className="m-hero-copy"><p className="m-eyebrow"><span className="m-dot"/> STUDIO D’INGÉNIERIE · POWERED BY ADA</p><h1>Lancez votre produit.<br />Transformez vos opérations.<br /><em>Gardez la maîtrise.</em></h1><p className="m-lead">Nous accompagnons les dirigeants et équipes métier dans la création de produits logiciels et l’automatisation de processus critiques. Un périmètre cadré, des critères de réussite explicites et une équipe responsable de la livraison.</p><div className="m-actions"><CTA /><Link className="m-text-link" href="/ada">Découvrir notre différence <ArrowUpRight size={16}/></Link></div><div className="m-hero-notes"><span>Au forfait</span><span>Équipe francophone</span><span>Code à vous</span></div></div><div className="m-hero-visual"><div className="m-orbit"/><EngineeringOS/><div className="m-visual-caption"><span>LA PUISSANCE DE L’IA.</span><span>LA RESPONSABILITÉ HUMAINE.</span></div></div></section><div className="m-belief"><span>CONSTRUIRE AVEC INTENTION</span><p>Un produit à lancer. Un processus à transformer.<br /><strong>Un partenaire qui s’engage sur la livraison.</strong></p><span className="m-belief-arrow">↘</span></div><Offers/><section className="m-ada-band"><div><p className="m-eyebrow">Notre différence porte un nom</p><h2>ADA.<br />Notre ingénierie,<br /><em>sous contrôle.</em></h2><p>Notre AI Engineering OS multi-engine réunit Claude Code, Codex, la mémoire projet et les agents spécialisés dans un même système de pilotage. ByARMS définit le cadre, supervise les interventions et valide les livrables.</p><CTA href="/ada" secondary>Comprendre notre ingénierie</CTA></div><div className="m-principles">{[['01','Une direction partagée','Des objectifs, un périmètre et des décisions explicites.'],['02','Une qualité vérifiable','Tests, revues et critères d’acceptation intégrés au delivery.'],['03','Un avancement visible','Des démonstrations régulières et des risques partagés.']].map(([n,t,d]) => <article key={n}><span>{n}</span><div><h3>{t}</h3><p>{d}</p></div><ArrowUpRight size={20}/></article>)}</div></section><Method/><section className="m-founder"><div><p className="m-eyebrow">Une relation directe</p><h2>Des outils puissants.<br />Des humains engagés.</h2><p>ByARMS est le studio d’ingénierie d’ARMS INTERNATIONAL LTD. Jonathan ARMS et une équipe distribuée accompagnent les entreprises francophones, du cadrage à la mise en production.</p><Link className="m-text-link" href="/confiance">Découvrir nos engagements <ArrowUpRight size={16}/></Link></div><div className="m-founder-signature"><div className="m-ceo-portrait"><Image src="/jonathan-arms.jpg" alt="Jonathan ARMS, CEO et fondateur de ByARMS" fill sizes="(max-width: 680px) 80vw, 350px" /></div><div className="m-ceo-caption"><strong>Jonathan ARMS</strong><p>CEO & fondateur · ByARMS</p><small>L’IA accélère l’exécution.<br />Nous portons la responsabilité.</small></div></div></section><BottomCTA/></Shell>
 }

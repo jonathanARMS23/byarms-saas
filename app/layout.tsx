@@ -1,42 +1,12 @@
 import type { Metadata } from 'next'
-import { JetBrains_Mono, Geist } from 'next/font/google'
 import './globals.css'
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains',
-  display: 'swap',
-})
+import './marketing.css'
+import './motion.css'
 
 export const metadata: Metadata = {
-  title: 'ByARMS — L\'agence de développement IA pour startups ambitieuses',
-  description: 'ByARMS livre vos applications web et mobile 3× plus vite grâce à ADA, un système d\'agents IA spécialisés. Prototype en 48h · MVP en 4 semaines.',
-  icons: {
-    icon: [
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: { url: '/apple-touch-icon.png' },
-    other: [{ rel: 'manifest', url: '/site.webmanifest' }],
-  },
-  openGraph: {
-    title: 'ByARMS — Votre équipe dev, dopée à l\'IA',
-    description: 'Applications web, mobile et IA livrées 3× plus vite grâce à ADA, notre système multi-agents.',
-    locale: 'fr_FR',
-    type: 'website',
-  },
+  title: { default: 'ByARMS — Produits logiciels & systèmes IA, powered by ADA', template: '%s | ByARMS' },
+  description: 'ByARMS transforme vos projets numériques et vos opérations en produits logiciels et systèmes IA opérationnels. Au forfait, avec ADA, notre AI Engineering OS.',
+  icons: { icon: '/favicon.ico', apple: '/apple-touch-icon.png' },
+  openGraph: { title: 'ByARMS — Lancez votre produit. Transformez vos opérations.', description: 'Product Launch et AI Operations. Une équipe responsable de la livraison, appuyée par ADA, notre AI Engineering OS multi-engine.', locale: 'fr_FR', type: 'website' },
 }
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="fr" className={cn("font-sans", geist.variable)}>
-      <head>
-        <link rel="preconnect" href="https://assets.calendly.com" />
-      </head>
-      <body>{children}</body>
-    </html>
-  )
-}
+export default function RootLayout({ children }: { children: React.ReactNode }) { return <html lang="fr"><body>{children}</body></html> }
