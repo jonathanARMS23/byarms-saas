@@ -1,5 +1,5 @@
 'use client'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -7,10 +7,12 @@ type Props = { demandesBadge: number; appelsBadge: number }
 
 export function AdminSidebar({ demandesBadge, appelsBadge }: Props) {
   const pathname = usePathname()
+  const router = useRouter()
 
   const logout = async () => {
     await fetch('/api/admin/logout', { method: 'POST' })
-    window.location.href = '/admin/login'
+    router.replace('/admin/login')
+    router.refresh()
   }
 
   const NAV = [

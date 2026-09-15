@@ -53,7 +53,7 @@ export function AppelsClient({ appels }: { appels: AppelRow[] }) {
 
       {appels.length === 0 ? (
         <div style={{ padding: '48px', textAlign: 'center', color: 'oklch(44% 0.008 250)', background: 'oklch(13% 0.014 250)', borderRadius: '12px', border: '1px solid oklch(21% 0.012 250)' }}>
-          Aucun appel pour l'instant. Les réservations Calendly apparaîtront ici.
+          Aucun appel enregistré pour le moment. La synchronisation Calendly reste à connecter.
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: selected ? '1fr 360px' : '1fr', gap: '20px' }}>
