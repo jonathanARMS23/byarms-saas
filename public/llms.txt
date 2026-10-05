@@ -1,0 +1,20 @@
+# ByARMS
+
+> ByARMS (ARMS INTERNATIONAL LTD) est un studio francophone de produits logiciels et de systèmes IA, livrés au forfait avec ADA, son AI Engineering OS. Fondateur : Jonathan ARMS.
+
+## Offres
+- [Product Launch](https://byarms.com/product-launch): du projet numérique au produit commercialisable, au forfait (34 900 € HT, 10 semaines).
+- [AI Operations](https://byarms.com/ai-operations): automatisation d'un processus coûteux par un système IA, sous contrôle humain (29 900 € HT, 8 semaines).
+- Blueprint : 10 jours de cadrage et décision go/no-go avant toute réalisation (4 900 € HT).
+
+## ADA
+- [ADA, AI Engineering OS](https://byarms.com/ada): orchestration de Claude Code et Codex, mémoire projet, agents spécialisés, contrôle des exécutions sous supervision humaine.
+- [Documentation ADA](https://ada.byarms.com): documentation technique.
+
+## Confiance et contact
+- [Notre engagement](https://byarms.com/confiance): transparence, propriété du code, responsabilité humaine.
+- [Évaluer mon projet](https://byarms.com/diagnostic): premier cadrage en trois minutes, sans engagement.
+- [Informations légales](https://byarms.com/mentions-legales)
+
+## Optional
+- [Confidentialité](https://byarms.com/confidentialite)

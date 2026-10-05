@@ -1,9 +1,18 @@
+import type { Metadata } from 'next'
 import { Shell, Intro, AdaPanel, Method, BottomCTA, CTA } from '@/components/Marketing'
+import { JsonLd } from '@/components/JsonLd'
+import { adaGraph } from '@/lib/schema'
 
-export const metadata = { title: 'ADA — AI Engineering OS multi-engine', description: 'Découvrez ADA, le système d’ingénierie ByARMS : Claude Code et Codex, mémoire projet, agents spécialisés et contrôle des exécutions sous supervision humaine.' }
+export const metadata: Metadata = {
+  title: { absolute: 'ADA, AI Engineering OS : notre ingénierie IA | ByARMS' },
+  description: 'ADA encadre Claude Code et Codex : mémoire projet, agents spécialisés, permissions et supervision humaine. Notre outil de livraison.',
+  alternates: { canonical: '/ada' },
+  openGraph: { url: '/ada', images: '/opengraph-image', title: 'ADA, AI Engineering OS multi-engine', description: 'Claude Code et Codex, mémoire projet, agents spécialisés et contrôle des exécutions sous supervision humaine.' },
+}
 
 export default function Page() {
   return <Shell>
+    <JsonLd data={adaGraph} />
     <Intro eyebrow="Le système d’ingénierie ByARMS" title="ADA. Un AI Engineering OS. Deux moteurs. Une direction humaine." text="ADA est passé de l’orchestration d’agents à un système complet de pilotage de l’ingénierie logicielle. Claude Code et Codex apportent les moteurs d’exécution. ADA organise leur travail, le contexte projet et les contrôles. ByARMS reste responsable de la livraison." />
     <section className="m-section m-detail-grid">
       <div><p className="m-eyebrow">Au-delà de la génération de code</p><h2>La puissance des moteurs.<br />Le cadre pour les piloter.</h2>
