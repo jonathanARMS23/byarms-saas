@@ -1,4 +1,5 @@
 import { ADA_DOCS_URL, SITE_COMPANY_NUMBER, SITE_DESCRIPTION, SITE_LEGAL_NAME, SITE_NAME, SITE_URL, absoluteUrl } from './site'
+import { offerFaq as offerFaqItems } from './content/faq'
 
 export type JsonLdValue = string | number | boolean | null | JsonLdObject | JsonLdValue[]
 export interface JsonLdObject {
@@ -35,6 +36,7 @@ const founder: JsonLdObject = {
   image: absoluteUrl('/jonathan-arms.jpg'),
   worksFor: { '@id': ORG_ID },
   url: SITE_URL,
+  sameAs: ['https://www.linkedin.com/in/jonathan-arms-senior'],
 }
 
 const website: JsonLdObject = {
@@ -68,20 +70,14 @@ export function pageGraph(items: Array<{ name: string; path: string }>): JsonLdG
   return { '@context': 'https://schema.org', '@graph': [breadcrumbGraph(items)] }
 }
 
-/** Questions affichées dans la FAQ de components/OfferPage.tsx (texte identique). */
+/** FAQ des pages d'offre, même source que le rendu visible (lib/content/faq.ts). */
 function offerFaq(ai: boolean): JsonLdObject {
-  const questions: Array<[string, string]> = [
-    ['Que se passe-t-il si le périmètre évolue ?', 'Nous documentons la demande, son impact sur le budget et le calendrier, puis la soumettons à votre validation avant réalisation.'],
-    ['Quel engagement sur le délai ?', 'Le cadre proposé prévoit 10 % du prix non dus en cas de retard exclusivement imputable à ByARMS. Les critères et exclusions sont précisés au contrat, notamment les retards d’accès et de validation côté client.'],
-    ['Et après la mise en production ?', `${ai ? 'AI Continuous Improvement à partir de 3 900 € HT par mois' : 'Product Evolution Partner à partir de 5 900 € HT par mois'}, avec engagement minimum de trois mois : suivi, optimisation et évolutions selon le périmètre convenu.`],
-    ['Quelle place pour ADA ?', 'ADA est notre AI Engineering OS multi-engine, appuyé sur Claude Code et Codex. Il réunit mémoire projet, agents spécialisés et contrôles d’exécution. Notre équipe supervise les interventions et valide les livrables. ADA est notre outil d’ingénierie, pas nécessairement le système installé chez vous.'],
-  ]
   return {
     '@type': 'FAQPage',
-    mainEntity: questions.map(([name, text]) => ({
+    mainEntity: offerFaqItems(ai).map(({ q, a }) => ({
       '@type': 'Question',
-      name,
-      acceptedAnswer: { '@type': 'Answer', text },
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
     })),
   }
 }
