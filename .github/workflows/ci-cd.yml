@@ -48,6 +48,11 @@ jobs:
         # Le schema prisma/schema.prisma est présent dans le checkout
         run: npm ci
 
+      - name: Generate Prisma client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: postgresql://build:build@localhost:5432/build
+
       - name: Lint
         run: npm run lint
 

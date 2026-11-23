@@ -19,6 +19,7 @@ RUN apk add --no-cache openssl
 WORKDIR /build
 COPY --from=deps /build/node_modules ./node_modules
 COPY . .
+RUN DATABASE_URL=postgresql://build:build@localhost:5432/build npx prisma generate
 RUN npm run build
 
 # ── Stage 3: runner ───────────────────────────────────────────────────────────

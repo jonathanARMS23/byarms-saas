@@ -5,6 +5,7 @@ const PAGES: Array<{ path: string; priority: number; changeFrequency: 'weekly' |
   { path: '/', priority: 1, changeFrequency: 'weekly' },
   { path: '/product-launch', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/ai-operations', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/infinite', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/ada', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/confiance', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/diagnostic', priority: 0.7, changeFrequency: 'monthly' },

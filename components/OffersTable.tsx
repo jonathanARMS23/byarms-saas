@@ -1,9 +1,12 @@
+import Link from 'next/link'
+
 const ROWS: Array<[string, string, string, string, string]> = [
   ['Product Blueprint', '10 jours', '4 900 € HT', 'Cadrer un produit avant d’engager la réalisation', 'Ateliers, parcours utilisateurs, prototype, architecture, roadmap, budget'],
   ['Product Launch', '10 semaines', '34 900 € HT', 'Lancer une première version utilisable d’un produit ou d’un outil métier', 'Parcours principal, UX/UI, frontend, backend, espace administrateur, tests, déploiement, transfert du code'],
   ['Advanced', '12 à 16 semaines', '49 900 à 79 900 € HT', 'Web et mobile, marketplace, intégrations complexes', 'Périmètre étendu défini au Blueprint'],
   ['AI Opportunity Blueprint', '10 jours', '4 900 € HT', 'Vérifier qu’un processus se prête à l’IA', 'Cartographie, baseline, potentiel de valeur, prototype, risques, décision go/no-go'],
   ['AI Operations', '8 semaines', '29 900 € HT', 'Automatiser un processus coûteux avec validation humaine', 'Un processus, jusqu’à trois systèmes connectés, agent principal, évaluation, monitoring, formation'],
+  ['ByARMS Infinite', 'Abonnement mensuel', '1 900 € HT / mois', 'Faire évoluer un produit ou système existant', 'Diagnostic inclus, backlog illimité, une demande active, développement, tests, livraison et bilan mensuel'],
   ['Transformation', '12 à 20 semaines', '49 900 à 89 900 € HT', 'Plusieurs workflows, plusieurs équipes ou architecture privée', 'Périmètre étendu défini au Blueprint'],
 ]
 
@@ -17,7 +20,7 @@ export function OffersTable() {
         </thead>
         <tbody>
           {ROWS.map(([name, duration, price, who, deliverables]) => (
-            <tr key={name}><th scope="row">{name}</th><td>{duration}</td><td>{price}</td><td>{who}</td><td>{deliverables}</td></tr>
+            <tr key={name}><th scope="row">{name === 'ByARMS Infinite' ? <Link href="/infinite">{name}</Link> : name}</th><td>{duration}</td><td>{price}</td><td>{who}</td><td>{deliverables}</td></tr>
           ))}
         </tbody>
       </table>
