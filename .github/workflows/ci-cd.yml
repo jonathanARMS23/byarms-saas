@@ -70,12 +70,22 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
+    env:
+      COOLIFY_HOST: ${{ secrets.COOLIFY_HOST }}
+      COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+      COOLIFY_APP_UUID: ${{ secrets.COOLIFY_APP_UUID }}
+
     steps:
+      - name: Use existing Coolify webhook
+        if: env.COOLIFY_HOST == '' || env.COOLIFY_TOKEN == '' || env.COOLIFY_APP_UUID == ''
+        run: echo "Coolify deploys main via its repository webhook. Optional API trigger is not configured."
+
       - name: Trigger Coolify deployment
+        if: env.COOLIFY_HOST != '' && env.COOLIFY_TOKEN != '' && env.COOLIFY_APP_UUID != ''
         run: |
           RESPONSE=$(curl -s -w "\n%{http_code}" \
-            -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}" \
-            "https://${{ secrets.COOLIFY_HOST }}/api/v1/deploy?uuid=${{ secrets.COOLIFY_APP_UUID }}&force=false")
+            -H "Authorization: Bearer $COOLIFY_TOKEN" \
+            "https://$COOLIFY_HOST/api/v1/deploy?uuid=$COOLIFY_APP_UUID&force=false")
           HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
           BODY=$(echo "$RESPONSE" | head -n -1)
           echo "Status : $HTTP_CODE"
